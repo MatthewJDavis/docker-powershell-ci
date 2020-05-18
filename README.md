@@ -8,7 +8,7 @@ Container based on PowerShell 7 for Continuous Integration.
 
 ## Notes
 
-This PowerShell 7 container has extra modules installed that I used to test my PowerShell scripts and modules.
+This PowerShell 7 container has extra modules installed that I use to test my PowerShell scripts and modules.
 
 - [psake]
 - [Pester]
@@ -16,10 +16,17 @@ This PowerShell 7 container has extra modules installed that I used to test my P
 
 ## Build
 
-Ansible is used to build the container from the Dockerfile found in the docker directory.
+### Docker
+
+``` docker build -t  . powershell-ci ```
+
+### Ansible
+
+Ansible can be used to build the container from the Dockerfile. Inspired by the great book [Ansible For DevOps]
 
 ``` ansible-playbook main.yml ```
 
 [psake]: https://github.com/psake/psake
 [Pester]: https://github.com/Pester/Pester
 [PSScriptAnalyzer]: https://github.com/PowerShell/Psscriptanalyzer
+[Ansible For DevOps]: https://www.ansiblefordevops.com/
