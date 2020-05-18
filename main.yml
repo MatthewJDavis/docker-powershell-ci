@@ -19,7 +19,7 @@
         name: "{{ image_name }}"
         source: build
         build:
-          path: docker
+          path: .
           pull: false
         state: present
         push: true
