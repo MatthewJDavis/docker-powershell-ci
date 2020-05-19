@@ -24,8 +24,8 @@ stages:
         docker build -t docker-powershell .
         docker images
         docker run --name test-container -t -d docker-powershell 
-        docker exec test-container pwsh -command 'if(-not(Get-Module -Name "psake" -ListAvailable).Name -eq "psake"){ throw "psake not installed"}'
-        docker exec test-container pwsh -command 'if(-not(Get-Module -Name "Pester" -ListAvailable).Name -eq "Pester"){ throw "Pester not installed"}'
-        docker exec test-container pwsh -command 'if(-not(Get-Module -Name "PSScriptAnalyzer" -ListAvailable).Name -eq "PSScriptAnalyzer"){ throw "PSScriptAnalyzer not installed"}'
+        docker exec test-container pwsh -command 'if(-not(Get-Module -Name "psake" -ListAvailable).Name -eq "psake"){ throw "psake not installed"} else {Write-Output "psake installed"}'
+        docker exec test-container pwsh -command 'if(-not(Get-Module -Name "Pester" -ListAvailable).Name -eq "Pester"){ throw "Pester not installed"} else {Write-Output "Pester installed"}'
+        docker exec test-container pwsh -command 'if(-not(Get-Module -Name "PSScriptAnalyzer" -ListAvailable).Name -eq "PSScriptAnalyzer"){ throw "PSScriptAnalyzer not installed"} else {Write-Output "PSScriptAnalyzer installed"}'
       workingDirectory: $(Build.SourcesDirectory)
       displayName: Build then test docker container
