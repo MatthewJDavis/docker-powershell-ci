@@ -28,5 +28,5 @@ stages:
         tags: |
           $(tag)
     - script: ls
-      workingDirectory: $(Agent.BuildDirectory)
+      workingDirectory: $(Build.SourcesDirectory)
       displayName: List contents of a folder
