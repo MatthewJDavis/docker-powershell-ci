@@ -20,16 +20,12 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
     - script: |
+        docker build -t docker-powershell .
         docker images
-        docker run --name test-container -t -d matthewdavis111/powershell-ci 
+        docker run --name test-container -t -d docker-powershell 
         docker exec test-container pwsh -command 'Get-Module -Name psake -ListAvailable'
+        docker exec test-container pwsh -command 'Get-Module -Name Pester -ListAvailable'
+        docker exec test-container pwsh -command 'Get-Module -Name PSScriptAnalyzer -ListAvailable'
       workingDirectory: $(Build.SourcesDirectory)
       displayName: Build then test docker container
