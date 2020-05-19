@@ -20,6 +20,7 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
     - script: |
+        set -e
         docker build -t docker-powershell .
         docker images
         docker run --name test-container -t -d docker-powershell 
