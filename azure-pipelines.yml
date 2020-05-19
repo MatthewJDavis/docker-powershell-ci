@@ -27,6 +27,9 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-    - script: ls
+    - script: |
+        docker images
+        docker run --name test-container -t -d matthewdavis111/powershell-ci 
+        docker exec test-container pwsh -command 'Get-Module -Name psake -ListAvailable'
       workingDirectory: $(Build.SourcesDirectory)
-      displayName: List contents of a folder
+      displayName: Build then test docker container
