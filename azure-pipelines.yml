@@ -1,6 +1,5 @@
-# Docker
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+# PowerShell CI Container build
+# Build and test PowerShell CI container
 
 trigger:
 - master
